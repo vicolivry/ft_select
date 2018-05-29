@@ -6,7 +6,7 @@
 #    By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 17:31:08 by volivry      #+#   ##    ##    #+#        #
-#    Updated: 2018/05/28 18:21:30 by volivry     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/05/29 14:24:20 by volivry     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,7 +20,7 @@ SRCDIR = srcs
 OBJDIR = objs
 INCDIR = includes libft
 
-SRC =  main.c lst_utils.c
+SRC =  main.c lst_utils.c lst_utils2.c utils.c term.c
 
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJECTS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))

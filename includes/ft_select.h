@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 11:15:23 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/28 18:16:39 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/29 17:14:35 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,6 +84,12 @@ void	add_after_lst(t_slct *elem, const char *name, int pos);
 void	add_before_lst(t_slct *elem, const char *name, int pos);
 void	add_queue(t_slct *root, const char *name, int pos);
 void	add_head(t_slct *root, const char *name, int pos);
+t_slct	*root_slct(void);
+t_slct	*init_slct(const char **argv);
+t_slct	*first_elem(t_slct *root);
 void	remove_elem(t_slct *elem);
-
+void	clean_exit(const char *error);
+int		ft_putchar_err(int c);
+void	init_term(t_term *term);
+void	rehab_term(t_term *term);
 #endif
