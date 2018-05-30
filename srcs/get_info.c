@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   get_info.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/05/28 13:06:18 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/30 18:58:03 by volivry     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/05/30 12:07:02 by volivry      #+#   ##    ##    #+#       */
+/*   Updated: 2018/05/30 12:07:29 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-void	free_slct(t_slct *lst)
+void	get_info(t_term *term)
 {
-	lst = lst->next;
-	while (lst->next != lst)
+	t_slct	*tmp;
+
+	term->info.nb_elem = 0;
+	term->info.nb_col = 0;
+	term->info.nb_row = 0;
+	term->info.max_len = 0;
+	tmp = first_elem(term->slct);
+	ioctl(0, TIOCGWINSZ, &(term->wndw));
+	term->info.nb_row = term->wndw.ws_row;
+	term->info.nb_col = term->wndw.ws_col;
+	while (tmp != term->slct)
 	{
-		remove_elem(lst);
-		lst = lst->next;
+		if (ft_strlen(tmp->name) > term->info.max_len)
+			term->info.max_len = ft_strlen(tmp->name);
+		term->info.nb_elem++;
+		tmp = tmp->next;
 	}
-	ft_memdel((void**)&lst);
-}
-
-int		main(int argc, const char **argv)
-{
-	t_term	term;
-
-	if (argc <= 1)
-	{
-		ft_putendl_fd("Not enough arguments", 2);
-		return (0);
-	}
-	term.slct = init_slct(argv);
-	init_term(&term);
-	get_info(&term);
-	display(&term);
-
-//	rehab_term(&term);
-	free_slct(term.slct);
-	return (0);
 }

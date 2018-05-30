@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 11:15:23 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/29 17:14:35 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/30 18:58:15 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,4 +92,7 @@ void	clean_exit(const char *error);
 int		ft_putchar_err(int c);
 void	init_term(t_term *term);
 void	rehab_term(t_term *term);
+void	get_info(t_term *term);
+void	display(t_term *term);
+
 #endif
