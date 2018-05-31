@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/30 18:56:33 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/30 19:04:48 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/31 17:50:09 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,46 +17,51 @@ static int		get_col_nb(t_term *term)
 {
 	int	cols;
 
-	cols = term->info.nb_elem / (term->info.nb_row - 1);
+	cols = term->info.nb_elem / (term->info.nb_row);
 	cols = !cols ? 1 : cols;
 	cols += cols * (term->info.nb_row) < term->info.nb_elem ? 1 : 0;
 	return (cols);
 }
 
-static int		set_display(t_term *term, int col_pos, int i)
+static int		set_cols(t_term *term, int col_pos, int i)
 {
 	int	j;
 
 	j = 0;
-	if (i != 0 && !(i % (term->info.nb_row)))
+	if (i != 0 && (i % (term->info.nb_row) == 0))
 	{
-		col_pos += (term->info.max_len);
+		col_pos += (term->info.max_len + 1);
 		tputs(tgetstr("rc", NULL), 1, ft_putchar_err);
 	}
-	while (j++ <= col_pos)
+	while (j < col_pos)
+	{
 		tputs(tgetstr("nd", NULL), 1, ft_putchar_err);
+		j++;
+	}
 	return (col_pos);
 }
 
-void	display(t_term *term)
+void			display(t_term *term)
 {
 	int		i;
 	int		cols;
 	int		col_pos;
 	t_slct	*tmp;
 
-	i = 1;
+	i = 0;
+	get_info(term);
 	cols = get_col_nb(term);
-	ft_printf("rows : %d, cols : %d\n", term->info.nb_row, cols);
 	col_pos = 0;
 	tmp = first_elem(term->slct);
-	while (tmp != term->slct)
-	{
-		col_pos = set_display(term, col_pos, i);
-		ft_putendl(tmp->name);
-		tmp = tmp->next;
-		i++;
-	}
+	if (cols * term->info.max_len >= term->info.nb_col)
+		ft_putendl("Window size too small");
+	else
+		while (tmp != term->slct)
+		{
+			col_pos = set_cols(term, col_pos, i);
+			(i + 1) % (term->info.nb_row) || !i ? ft_putendl(tmp->name)
+				: ft_putstr(tmp->name);
+			tmp = tmp->next;
+			i++;
+		}
 }
-
-

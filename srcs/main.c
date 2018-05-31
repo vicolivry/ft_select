@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 13:06:18 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/30 18:58:03 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/31 17:50:41 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,8 +37,7 @@ int		main(int argc, const char **argv)
 	init_term(&term);
 	get_info(&term);
 	display(&term);
-
-//	rehab_term(&term);
+	rehab_term(&term);
 	free_slct(term.slct);
 	return (0);
 }
