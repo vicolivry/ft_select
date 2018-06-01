@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 13:55:04 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/29 13:55:59 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/01 18:15:26 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,9 +15,19 @@
 
 void	clean_exit(const char *error)
 {
-	ft_putendl_fd("ft_select: error: ", 2);
+	ft_putstr_fd("ft_select: error: ", 2);
 	ft_putendl_fd(error, 2);
 	exit(1);
+}
+
+int		get_col_nb(t_term *term)
+{
+	int	cols;
+
+	cols = term->info.nb_elem / (term->info.nb_row);
+	cols = !cols ? 1 : cols;
+	cols += cols * (term->info.nb_row) < term->info.nb_elem ? 1 : 0;
+	return (cols);
 }
 
 int		ft_putchar_err(int c)

@@ -6,22 +6,12 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/30 18:56:33 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/31 17:50:09 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/01 18:16:06 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
-
-static int		get_col_nb(t_term *term)
-{
-	int	cols;
-
-	cols = term->info.nb_elem / (term->info.nb_row);
-	cols = !cols ? 1 : cols;
-	cols += cols * (term->info.nb_row) < term->info.nb_elem ? 1 : 0;
-	return (cols);
-}
 
 static int		set_cols(t_term *term, int col_pos, int i)
 {
@@ -30,7 +20,7 @@ static int		set_cols(t_term *term, int col_pos, int i)
 	j = 0;
 	if (i != 0 && (i % (term->info.nb_row) == 0))
 	{
-		col_pos += (term->info.max_len + 1);
+		col_pos += (term->info.max_len + 2);
 		tputs(tgetstr("rc", NULL), 1, ft_putchar_err);
 	}
 	while (j < col_pos)
@@ -59,8 +49,9 @@ void			display(t_term *term)
 		while (tmp != term->slct)
 		{
 			col_pos = set_cols(term, col_pos, i);
-			(i + 1) % (term->info.nb_row) || !i ? ft_putendl(tmp->name)
-				: ft_putstr(tmp->name);
+			print_arg(tmp);
+			if ((i + 1) % (term->info.nb_row) || !i)
+				ft_putchar(10);
 			tmp = tmp->next;
 			i++;
 		}

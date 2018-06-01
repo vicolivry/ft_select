@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 11:15:23 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/30 18:58:15 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/01 18:32:32 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <term.h>
 # include <curses.h>
+
 /*
 ** KEYBOARD INPUTS
 */
@@ -52,7 +53,7 @@
 
 typedef struct			s_slct
 {
-	int					pos;
+	int					current;
 	int					len;
 	int					select;
 	char				*name;
@@ -80,13 +81,14 @@ typedef struct			s_term
 	t_termios			termios;
 }						t_term;
 
-void	add_after_lst(t_slct *elem, const char *name, int pos);
-void	add_before_lst(t_slct *elem, const char *name, int pos);
-void	add_queue(t_slct *root, const char *name, int pos);
-void	add_head(t_slct *root, const char *name, int pos);
+void	add_after_lst(t_slct *elem, const char *name);
+void	add_before_lst(t_slct *elem, const char *name);
+void	add_queue(t_slct *root, const char *name);
+void	add_head(t_slct *root, const char *name);
 t_slct	*root_slct(void);
 t_slct	*init_slct(const char **argv);
 t_slct	*first_elem(t_slct *root);
+t_slct	*last_elem(t_slct *root);
 void	remove_elem(t_slct *elem);
 void	clean_exit(const char *error);
 int		ft_putchar_err(int c);
@@ -94,5 +96,13 @@ void	init_term(t_term *term);
 void	rehab_term(t_term *term);
 void	get_info(t_term *term);
 void	display(t_term *term);
+void	print_arg(t_slct *slct);
+void	down_key(t_term *term);
+void	up_key(t_term *term);
+void	del_key(t_term *term);
+void	sp_key(t_term *term);
+int		get_col_nb(t_term *term);
+void	right_key(t_term *term);
+void	left_key(t_term *term);
 
 #endif
