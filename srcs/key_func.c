@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 17:49:20 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/01 17:59:49 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/04 17:15:01 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,10 +44,33 @@ void	del_key(t_term *term)
 			else if (tmp->prev != term->slct)
 				tmp->prev->current = 1;
 			else
-				exit(1);
+				quit_ft_select(term);
 			remove_elem(tmp);
 			return ;
 		}
 		tmp = tmp->next;
 	}
+}
+
+void	rc_key(t_term *term)
+{
+	t_slct	*tmp;
+
+	tputs(tgetstr("rc", NULL), 1, ft_putchar_err);
+	tmp = first_elem(term->slct);
+	while (tmp != term->slct)
+	{
+		if (!tmp->select)
+			remove_elem(tmp);
+		tmp = tmp->next;
+	}
+	tmp = first_elem(term->slct);
+	while (tmp != term->slct)
+	{
+		ft_putstr_fd(tmp->name, 0);
+		if (tmp->next != term->slct)
+			ft_putstr_fd(" ", 0);
+		tmp = tmp->next;
+	}
+	quit_ft_select(term);
 }

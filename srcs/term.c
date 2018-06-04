@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 14:21:59 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/01 18:44:26 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/01 18:48:29 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,6 +45,7 @@ void	rehab_term(t_term *term)
 	term->termios.c_lflag = (ICANON | ECHO);
 	if (tcsetattr(term->fd, TCSANOW, &(term->termios)) == -1)
 		clean_exit("tcsetattr");
+		tputs(tgetstr("rc", NULL), 1, ft_putchar_err);
 	tputs(tgetstr("cl", NULL), 1, ft_putchar_err);
 	tputs(tgetstr("ve", NULL), 1, ft_putchar_err);
 }

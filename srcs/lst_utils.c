@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 14:10:10 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/01 12:20:12 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/04 11:44:36 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,7 @@ void	add_after_lst(t_slct *elem, const char *name)
 		new_elem->len = ft_strlen(name);
 		new_elem->current = 0;
 		new_elem->select = 0;
+		new_elem->index = 0;
 		new_elem->prev = elem;
 		new_elem->next = elem->next;
 		elem->next->prev = new_elem;
@@ -42,6 +43,7 @@ void	add_before_lst(t_slct *elem, const char *name)
 		new_elem->len = ft_strlen(name);
 		new_elem->current = 0;
 		new_elem->select = 0;
+		new_elem->index = 0;
 		new_elem->prev = elem->prev;
 		new_elem->next = elem;
 		elem->prev->next = new_elem;

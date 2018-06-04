@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 13:55:04 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/01 18:15:26 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/04 17:15:29 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,4 +33,21 @@ int		get_col_nb(t_term *term)
 int		ft_putchar_err(int c)
 {
 	return (write(2, &c, 1));
+}
+
+void	free_slct(t_slct *lst)
+{
+	lst = lst->next;
+	while (lst->next != lst)
+	{
+		remove_elem(lst);
+		lst = lst->next;
+	}
+	ft_memdel((void**)&lst);
+}
+
+void	quit_ft_select(t_term *term)
+{
+	free_slct(term->slct);
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 13:57:56 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/01 14:00:24 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/04 11:33:30 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,7 @@ t_slct	*root_slct(void)
 	lst->current = 0;
 	lst->len = 0;
 	lst->select = 0;
+	lst->index = 0;
 	lst->name = NULL;
 	lst->next = lst;
 	lst->prev = lst;
@@ -59,4 +60,16 @@ t_slct	*last_elem(t_slct *root)
 		return (root->prev);
 	else
 		return (NULL);
+}
+
+void	update_index(t_slct *root)
+{
+	t_slct	*tmp;
+
+	tmp = first_elem(root);
+	while (tmp != root)
+	{
+		tmp->index = tmp->prev->index + 1;
+		tmp = tmp->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 11:15:23 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/01 18:32:32 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/04 17:17:01 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,6 +57,7 @@ typedef struct			s_slct
 	int					len;
 	int					select;
 	char				*name;
+	int					index;
 	struct s_slct		*next;
 	struct s_slct		*prev;
 }						t_slct;
@@ -104,5 +105,9 @@ void	sp_key(t_term *term);
 int		get_col_nb(t_term *term);
 void	right_key(t_term *term);
 void	left_key(t_term *term);
+void	update_index(t_slct *root);
+void	rc_key(t_term *term);
+void	quit_ft_select(t_term *term);
+void	free_slct(t_slct *lst);
 
 #endif

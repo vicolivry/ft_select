@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 11:59:58 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/01 18:01:19 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/04 13:26:00 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,9 @@
 static void	print_cur(t_slct *slct)
 {
 	tputs(tgetstr("us", NULL), 1, ft_putchar_err);
+	slct->index % 2 ? ft_putstr(MAGENTA) : ft_putstr (CYAN);
 	ft_putstr(slct->name);
+	ft_putstr(RESET);
 	tputs(tgetstr("ue", NULL), 1, ft_putchar_err);
 }
 
@@ -24,7 +26,9 @@ static void	print_cur_slct(t_slct *slct)
 {
 	tputs(tgetstr("so", NULL), 1, ft_putchar_err);
 	tputs(tgetstr("us", NULL), 1, ft_putchar_err);
+	slct->index % 2 ? ft_putstr(MAGENTA) : ft_putstr (CYAN);
 	ft_putstr(slct->name);
+	ft_putstr(RESET);
 	tputs(tgetstr("ue", NULL), 1, ft_putchar_err);
 	tputs(tgetstr("se", NULL), 1, ft_putchar_err);
 }
@@ -32,7 +36,9 @@ static void	print_cur_slct(t_slct *slct)
 static void	print_slct(t_slct *slct)
 {
 	tputs(tgetstr("so", NULL), 1, ft_putchar_err);
+	slct->index % 2 ? ft_putstr(MAGENTA) : ft_putstr (CYAN);
 	ft_putstr(slct->name);
+	ft_putstr(RESET);
 	tputs(tgetstr("se", NULL), 1, ft_putchar_err);
 }
 
@@ -48,5 +54,9 @@ void		print_arg(t_slct *slct)
 	else if (slct->select)
 		print_slct(slct);
 	else
+	{
+		slct->index % 2 ? ft_putstr(MAGENTA) : ft_putstr (CYAN);
 		ft_putstr(slct->name);
+		ft_putstr(RESET);
+	}
 }
