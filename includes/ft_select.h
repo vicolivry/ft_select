@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 11:15:23 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/04 17:17:01 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/05 15:38:25 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,20 +22,6 @@
 # include <fcntl.h>
 # include <term.h>
 # include <curses.h>
-
-/*
-** KEYBOARD INPUTS
-*/
-
-# define RIGHT 4414235
-# define LEFT 4479771
-# define UP 4283163
-# define DOWN 4348699
-# define BCK_SP 127
-# define RET 10
-# define ESC 27
-# define SP 32
-# define DEL 2117294875
 
 /*
 ** PRINT COLORS
@@ -91,7 +77,7 @@ t_slct	*init_slct(const char **argv);
 t_slct	*first_elem(t_slct *root);
 t_slct	*last_elem(t_slct *root);
 void	remove_elem(t_slct *elem);
-void	clean_exit(const char *error);
+void	clean_exit(const char *error, t_term *term);
 int		ft_putchar_err(int c);
 void	init_term(t_term *term);
 void	rehab_term(t_term *term);
@@ -109,5 +95,8 @@ void	update_index(t_slct *root);
 void	rc_key(t_term *term);
 void	quit_ft_select(t_term *term);
 void	free_slct(t_slct *lst);
+void	key_input(t_term *term);
+void	get_signals(void);
+t_term	*memorize_term(t_term *term, int mode);
 
 #endif

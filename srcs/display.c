@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/30 18:56:33 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/04 11:38:48 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/05 15:04:24 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,8 +43,12 @@ void			display(t_term *term)
 	cols = get_col_nb(term);
 	col_pos = 0;
 	tmp = first_elem(term->slct);
+		tputs(tgetstr("cl", NULL), 1, ft_putchar_err);
 	if (cols * term->info.max_len >= term->info.nb_col)
+	{
 		ft_putendl("Window size too small");
+		return ;
+	}
 	else
 		while (tmp != term->slct)
 		{
