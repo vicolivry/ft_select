@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/05 15:34:35 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 15:57:46 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/06 15:05:31 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,32 @@ static void		resize_win(int sig)
 	term = NULL;
 	term = memorize_term(term, 101);
 	tputs(tgetstr("cl", NULL), 1, ft_putchar_err);
+	display(term);
+}
+
+static void		stop(int sig)
+{
+	t_term	*term;
+	char	s[2];
+
+	(void)sig;
+	term = NULL;
+	term = memorize_term(term, 101);
+	s[0] = term->termios.c_cc[VSUSP];
+	s[1] = 0;
+	rehab_term(term);
+	signal(SIGTSTP, SIG_DFL);
+	ioctl(0, TIOCSTI, s);
+}
+
+static void		restart(int sig)
+{
+	t_term	*term;
+
+	(void)sig;
+	term = NULL;
+	term = memorize_term(term, 101);
+	init_term(term);
 	display(term);
 }
 
@@ -40,4 +66,6 @@ void			get_signals(void)
 	signal(SIGINT, quit);
 	signal(SIGQUIT, quit);
 	signal(SIGTERM, quit);
+	signal(SIGTSTP, stop);
+	signal(SIGCONT, restart);
 }

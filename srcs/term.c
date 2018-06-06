@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 14:21:59 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 14:43:40 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/06 14:01:26 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 void	init_term(t_term *term)
 {
-	const char	*name_term;
+	char	*name_term;
 
 	if (!isatty(0))
 		clean_exit("isatty", term);

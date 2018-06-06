@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 17:49:20 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 15:33:00 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/06 15:41:18 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ void	key_input(t_term *term)
 		nb_cols == 1 ? up_key(term) : left_key(term);
 	if (*(int*)buff == 32)
 		sp_key(term);
-	if ((buff[0] == 27 && buff[1] == 91 && buff[2] == 51)|| *(int*)buff == 127)
+	if ((buff[0] == 27 && buff[1] == 91 && buff[2] == 51) || *(int*)buff == 127)
 		del_key(term);
 	if (*(int*)buff == 27)
 		quit_ft_select(term);
