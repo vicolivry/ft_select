@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 17:49:20 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/06 15:41:18 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/07 10:34:04 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,14 +92,17 @@ void	rc_key(t_term *term)
 			remove_elem(tmp);
 		tmp = tmp->next;
 	}
+	rehab_term(term);
 	tmp = first_elem(term->slct);
 	if (tmp)
+	{
 		while (tmp != term->slct)
 		{
-			ft_putstr_fd(tmp->name, 0);
+			ft_printf("%s", tmp->name);
 			if (tmp->next != term->slct)
-				ft_putstr_fd(" ", 0);
+				ft_printf(" ");
 			tmp = tmp->next;
 		}
+	}
 	quit_ft_select(term);
 }

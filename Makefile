@@ -6,7 +6,7 @@
 #    By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 17:31:08 by volivry      #+#   ##    ##    #+#        #
-#    Updated: 2018/06/05 15:38:52 by volivry     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/06/07 14:08:37 by volivry     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,7 +14,7 @@
 .PHONY: all clean fclean re
 
 CC = gcc
-CCFLAGS = -Wall -Wextra -Werror 
+CCFLAGS = -Wall -Wextra -Werror
 NAME = ft_select
 SRCDIR = srcs
 OBJDIR = objs

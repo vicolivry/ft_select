@@ -6,7 +6,7 @@
 /*   By: volivry <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/28 13:06:18 by volivry      #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/06 15:40:52 by volivry     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/07 12:06:58 by volivry     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,9 +25,9 @@ t_term		*memorize_term(t_term *term, int mode)
 static void	infinite_loop(t_term *term)
 {
 	term = memorize_term(term, 0);
+	get_signals();
 	while ("infinite loop")
 	{
-		get_signals();
 		update_index(term->slct);
 		get_info(term);
 		key_input(term);
